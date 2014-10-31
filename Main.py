@@ -1,14 +1,15 @@
 from porc import Client
 import requests
+import secrets
 
 #Db connection
-client = Client("7ea55ba5-4aa3-4bc0-8c2c-722a638f36ef")
+client = Client(secrets.key['orchkey']);
 client.ping().raise_for_status()
 
 #datainsamling
-arbetsfor = requests.get('https://www.kimonolabs.com/api/ay62uqwk?apikey=296d7af19aa06eafb66d56159770aab5')
-metrojobb = requests.get('https://www.kimonolabs.com/api/93vsz4g4?apikey=296d7af19aa06eafb66d56159770aab5')
-monster = requests.get('https://www.kimonolabs.com/api/5ke77d8q?apikey=296d7af19aa06eafb66d56159770aab5')
+arbetsfor = requests.get(secrets.key['sourcerurlAF']);
+metrojobb = requests.get(secrets.key['sourcerurlMJ']);
+monster = requests.get(secrets.key['sourceurlMon']);
 
 
 arbetsforData = arbetsfor.json()
